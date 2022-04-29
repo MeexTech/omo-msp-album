@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package omo.msp.album;
+option go_package= "proto/album";
+import "proto/album/common.proto";
+
+service CollectiveService {
+  rpc AddOne(ReqCollectiveAdd) returns (ReplyCollectiveInfo) {}
+  rpc UpdateBase(ReqCollectiveUpdate) returns (ReplyInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyCollectiveInfo) {}
+  rpc Search(RequestInfo) returns (ReplyCollectiveList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyCollectiveList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+  rpc UpdateStatus(RequestIntFlag) returns (ReplyInfo) {}
+  rpc AppendAsset(RequestList) returns (ReplyList) {}
+  rpc SubtractAsset(RequestList) returns (ReplyList) {}
+}
+
+message CollectiveInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+
+  string name = 7;
+  string remark = 8;
+  string cover = 9;
+  string owner = 10;
+  uint64 size = 11;
+  uint64 limit = 12;
+  uint32 star = 13;
+  uint32 status = 14;
+  uint32 permission = 15;
+  repeated string assets = 16;
+  repeated string tags = 17;
+}
+
+message ReqCollectiveAdd {
+  string name = 1;
+  string remark = 2;
+  string operator = 3;
+  string owner = 4;
+}
+
+message ReqCollectiveUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string cover = 4;
+  string operator = 5;
+}
+
+message ReplyCollectiveInfo{
+  ReplyStatus status = 1;
+  CollectiveInfo info = 2;
+}
+
+message ReplyCollectiveList{
+  ReplyStatus status = 1;
+  repeated CollectiveInfo list = 2;
+}

@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package omo.msp.album;
+option go_package= "proto/album";
+import "proto/album/common.proto";
+
+service PhotocopyService {
+  rpc AddOne(ReqPhotocopyAdd) returns (ReplyPhotocopyInfo) {}
+  rpc UpdateBase(ReqPhotocopyUpdate) returns (ReplyInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyPhotocopyInfo) {}
+  rpc Search(RequestInfo) returns (ReplyPhotocopyList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyPhotocopyList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+  rpc AppendSlot(RequestList) returns (ReplyList) {}
+  rpc SubtractSlot(RequestList) returns (ReplyList) {}
+}
+
+message PhotocopyInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+
+  string name = 7;
+  string remark = 8;
+  string content = 9;
+  string owner = 10;
+  string mother = 11;
+  string Template = 12;
+  uint32 count = 13;
+  repeated string tags = 14;
+  repeated PhotocopySlot slots = 15;
+}
+
+message ReqPhotocopyAdd {
+  string name = 1;
+  string remark = 2;
+  string operator = 3;
+  string content = 4;
+  string owner = 5;
+}
+
+message ReqPhotocopyUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string content = 4;
+  string operator = 5;
+}
+
+message ReplyPhotocopyInfo{
+  ReplyStatus status = 1;
+  PhotocopyInfo info = 2;
+}
+
+message ReplyPhotocopyList{
+  ReplyStatus status = 1;
+  repeated PhotocopyInfo list = 2;
+}
