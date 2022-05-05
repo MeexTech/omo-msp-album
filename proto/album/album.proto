@@ -35,7 +35,7 @@ message AlbumInfo {
   uint32 status = 13;
   uint32 style = 14;
   uint64 size = 15;
-  uint64 limit = 16;
+  uint32 limit = 16;
   uint32 star = 17;
   repeated string assets = 19;
   repeated string tags = 20;
@@ -58,6 +58,7 @@ message ReqAlbumUpdate{
   string remark = 3;
   string cover = 4;
   string operator = 5;
+  string passwords = 6;
 }
 
 message ReplyAlbumInfo{

@@ -31,7 +31,7 @@ message CollectiveInfo {
   string cover = 9;
   string owner = 10;
   uint64 size = 11;
-  uint64 limit = 12;
+  uint32 limit = 12;
   uint32 star = 13;
   uint32 status = 14;
   uint32 permission = 15;
