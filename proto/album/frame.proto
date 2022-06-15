@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package omo.msp.album;
+option go_package= "proto/album";
+import "proto/album/common.proto";
+
+service FrameService {
+  rpc AddOne(ReqFrameAdd) returns (ReplyFrameInfo) {}
+  rpc UpdateBase(ReqFrameUpdate) returns (ReplyInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyFrameInfo) {}
+  rpc Search(RequestInfo) returns (ReplyFrameList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyFrameList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message FrameInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+
+  string name = 7;
+  string remark = 8;
+  string asset = 9;
+  uint32 width = 10;
+  uint32 height = 11;
+  string owner = 12;
+}
+
+message ReqFrameAdd {
+  string name = 1;
+  string remark = 2;
+  string operator = 3;
+  string asset = 4;
+  uint32 width = 5;
+  uint32 height = 6;
+  string owner = 7;
+}
+
+message ReqFrameUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+}
+
+message ReplyFrameInfo{
+  ReplyStatus status = 1;
+  FrameInfo info = 2;
+}
+
+message ReplyFrameList{
+  ReplyStatus status = 1;
+  repeated FrameInfo list = 2;
+}
