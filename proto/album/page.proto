@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package omo.msp.album;
+option go_package= "proto/album";
+import "proto/album/common.proto";
+
+service PageService {
+  rpc AddOne(ReqPageAdd) returns (ReplyPageInfo) {}
+  rpc UpdateBase(ReqPageUpdate) returns (ReplyInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyPageInfo) {}
+  rpc Search(RequestInfo) returns (ReplyPageList) {}
+  rpc GetListBy(RequestFilter) returns (ReplyPageList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBy(RequestUpdate) returns (ReplyInfo) {}
+  rpc SetContent(ReqPageContent) returns (ReplyPageContents){}
+}
+
+message PageInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+
+  string name = 7;
+  string remark = 8;
+  string owner = 9;
+
+  string composition = 10;
+  uint32 type = 11;
+  uint32 lifecycle = 12;
+
+  repeated PairList contents = 21;
+}
+
+message ReqPageAdd {
+  string name = 1;
+  string remark = 2;
+  string operator = 3;
+  string owner = 4;
+  uint32 type = 5;
+  string composition = 6;
+  uint32 lifecycle = 7;
+
+}
+
+message ReqPageUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+  uint32 lifecycle = 5;
+}
+
+message ReqPageContent{
+  string uid = 1;
+  uint32 slot = 2;
+  uint32 life = 3;
+  string operator = 4;
+  repeated string assets = 11;
+}
+
+message ReplyPageContent{
+  ReplyStatus status = 1;
+  string uid = 2;
+  repeated PairList list = 11;
+}
+
+message ReqPageAppend{
+  string uid = 1;
+  string operator = 2;
+  repeated PairList contents = 11;
+}
+
+message ReplyPageContents{
+  ReplyStatus status = 1;
+  repeated PairList list = 11;
+}
+
+message ReplyPageInfo{
+  ReplyStatus status = 1;
+  PageInfo info = 2;
+}
+
+message ReplyPageList{
+  ReplyStatus status = 1;
+  repeated PageInfo list = 2;
+}

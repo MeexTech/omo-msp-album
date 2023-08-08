@@ -3,6 +3,17 @@ syntax = "proto3";
 package omo.msp.album;
 option go_package= "proto/album";
 
+message PairInt{
+  uint32 key = 1;
+  string value = 2;
+}
+
+message PairList{
+  uint32 key = 1;
+  uint32 value = 2;
+  repeated string list = 10;
+}
+
 message RequestInfo {
   string uid = 1;
   string flag = 2;

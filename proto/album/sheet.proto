@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package omo.msp.album;
+option go_package= "proto/album";
+import "proto/album/common.proto";
+
+service SheetService {
+  rpc AddOne(ReqSheetAdd) returns (ReplySheetInfo) {}
+  rpc UpdateBase(ReqSheetUpdate) returns (ReplyInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplySheetInfo) {}
+  rpc Search(RequestInfo) returns (ReplySheetList) {}
+  rpc GetListBy(RequestFilter) returns (ReplySheetList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBy(RequestUpdate) returns (ReplyInfo) {}
+  rpc UpdatePages(ReqSheetPages) returns (ReplySheetPages){}
+}
+
+message SheetInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+
+  string name = 7;
+  string remark = 8;
+  string owner = 9;
+
+  string area = 10;
+  int64 time = 11;
+
+  repeated PairInt pages = 21;
+}
+
+message ReqSheetAdd {
+  string name = 1;
+  string remark = 2;
+  string operator = 3;
+  string owner = 4;
+}
+
+message ReqSheetUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+}
+
+message ReqSheetPages{
+  string uid = 1;
+  string operator = 4;
+  repeated PairInt list = 11;
+}
+
+message ReplySheetPages{
+  ReplyStatus status = 1;
+  repeated PairList list = 11;
+}
+
+message ReplySheetInfo{
+  ReplyStatus status = 1;
+  SheetInfo info = 2;
+}
+
+message ReplySheetList{
+  ReplyStatus status = 1;
+  repeated SheetInfo list = 2;
+}
