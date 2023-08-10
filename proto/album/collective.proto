@@ -45,6 +45,7 @@ message ReqCollectiveAdd {
   string remark = 2;
   string operator = 3;
   string owner = 4;
+  uint32 type = 5;
 }
 
 message ReqCollectiveUpdate{
