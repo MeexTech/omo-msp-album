@@ -66,8 +66,9 @@ message ReqPageUpdate{
 message ReqPageContent{
   string uid = 1;
   uint32 slot = 2;
-  uint32 life = 3;
+  uint32 way = 3;
   string operator = 4;
+  uint32 type = 5;
   repeated string assets = 11;
 }
 

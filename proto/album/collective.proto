@@ -35,8 +35,9 @@ message CollectiveInfo {
   uint32 star = 13;
   uint32 status = 14;
   uint32 permission = 15;
-  repeated string assets = 16;
-  repeated string tags = 17;
+  uint32 type = 16;
+  repeated string assets = 21;
+  repeated string tags = 22;
 }
 
 message ReqCollectiveAdd {
