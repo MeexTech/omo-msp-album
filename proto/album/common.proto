@@ -8,12 +8,6 @@ message PairInt{
   string value = 2;
 }
 
-message PairList{
-  uint32 key = 1;
-  uint32 value = 2;
-  repeated string list = 10;
-}
-
 message RequestInfo {
   string uid = 1;
   string flag = 2;

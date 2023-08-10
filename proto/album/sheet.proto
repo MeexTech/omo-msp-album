@@ -27,11 +27,16 @@ message SheetInfo {
   string name = 7;
   string remark = 8;
   string owner = 9;
+  string cover = 10;
+  string area = 11;
 
-  string area = 10;
-  int64 time = 11;
+  repeated string tags = 21;
+  repeated SheetPage pages = 31;
+}
 
-  repeated PairInt pages = 21;
+message SheetPage{
+  string page = 1;
+  uint32 weight = 2;
 }
 
 message ReqSheetAdd {
@@ -39,6 +44,7 @@ message ReqSheetAdd {
   string remark = 2;
   string operator = 3;
   string owner = 4;
+  repeated string tags = 11;
 }
 
 message ReqSheetUpdate{
@@ -51,12 +57,13 @@ message ReqSheetUpdate{
 message ReqSheetPages{
   string uid = 1;
   string operator = 4;
-  repeated PairInt list = 11;
+  repeated SheetPage list = 11;
 }
 
 message ReplySheetPages{
   ReplyStatus status = 1;
-  repeated PairList list = 11;
+  string uid = 2;
+  repeated SheetPage list = 11;
 }
 
 message ReplySheetInfo{

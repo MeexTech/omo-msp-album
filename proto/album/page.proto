@@ -32,7 +32,16 @@ message PageInfo {
   uint32 type = 11;
   uint32 lifecycle = 12;
 
-  repeated PairList contents = 21;
+  repeated string tags = 21;
+  repeated PageContent contents = 31;
+}
+
+message PageContent{
+  uint32 type = 1;
+  uint32 slot = 2;
+  uint32 way = 3;
+  uint32 interval = 4;
+  repeated string list = 10;
 }
 
 message ReqPageAdd {
@@ -43,7 +52,7 @@ message ReqPageAdd {
   uint32 type = 5;
   string composition = 6;
   uint32 lifecycle = 7;
-
+  repeated string tags = 11;
 }
 
 message ReqPageUpdate{
@@ -65,18 +74,19 @@ message ReqPageContent{
 message ReplyPageContent{
   ReplyStatus status = 1;
   string uid = 2;
-  repeated PairList list = 11;
+  repeated PageContent list = 11;
 }
 
 message ReqPageAppend{
   string uid = 1;
   string operator = 2;
-  repeated PairList contents = 11;
+  repeated PageContent contents = 11;
 }
 
 message ReplyPageContents{
   ReplyStatus status = 1;
-  repeated PairList list = 11;
+  string uid = 2;
+  repeated PageContent list = 11;
 }
 
 message ReplyPageInfo{

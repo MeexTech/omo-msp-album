@@ -13,7 +13,7 @@ service CompositionService {
   rpc GetListBy(RequestFilter) returns (ReplyCompositionList) {}
   rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
   rpc UpdateBy(RequestUpdate) returns (ReplyInfo) {}
-  rpc SetSlot(ReqCompositionSlots) returns (ReplyCompositionSlots){}
+  rpc SetSlots(ReqCompositionSlots) returns (ReplyCompositionSlots){}
 }
 
 message CompositionInfo {
@@ -28,8 +28,10 @@ message CompositionInfo {
   string remark = 8;
   string owner = 9;
   uint32 aspect = 10;
+  string cover = 11;
 
-  repeated SlotInfo slots = 21;
+  repeated string tags = 21;
+  repeated SlotInfo slots = 31;
 }
 
 message SlotInfo{
@@ -47,6 +49,8 @@ message ReqCompositionAdd {
   string operator = 3;
   uint32 aspect = 4;
   string owner = 5;
+  string cover = 6;
+  repeated string tags = 11;
 }
 
 message ReqCompositionUpdate{

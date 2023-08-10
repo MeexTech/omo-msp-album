@@ -9,6 +9,5 @@ proto:
 	protoc --proto_path=. --micro_out=. --go_out=. proto/album/style.proto
 	protoc --proto_path=. --micro_out=. --go_out=. proto/album/frame.proto
 	protoc --proto_path=. --micro_out=. --go_out=. proto/album/composition.proto
-	protoc --proto_path=. --micro_out=. --go_out=. proto/album/folder.proto
 	protoc --proto_path=. --micro_out=. --go_out=. proto/album/page.proto
 	protoc --proto_path=. --micro_out=. --go_out=. proto/album/sheet.proto

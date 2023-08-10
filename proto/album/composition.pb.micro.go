@@ -42,7 +42,7 @@ type CompositionService interface {
 	GetListBy(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyCompositionList, error)
 	GetStatistic(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStatistic, error)
 	UpdateBy(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
-	SetSlot(ctx context.Context, in *ReqCompositionSlots, opts ...client.CallOption) (*ReplyCompositionSlots, error)
+	SetSlots(ctx context.Context, in *ReqCompositionSlots, opts ...client.CallOption) (*ReplyCompositionSlots, error)
 }
 
 type compositionService struct {
@@ -137,8 +137,8 @@ func (c *compositionService) UpdateBy(ctx context.Context, in *RequestUpdate, op
 	return out, nil
 }
 
-func (c *compositionService) SetSlot(ctx context.Context, in *ReqCompositionSlots, opts ...client.CallOption) (*ReplyCompositionSlots, error) {
-	req := c.c.NewRequest(c.name, "CompositionService.SetSlot", in)
+func (c *compositionService) SetSlots(ctx context.Context, in *ReqCompositionSlots, opts ...client.CallOption) (*ReplyCompositionSlots, error) {
+	req := c.c.NewRequest(c.name, "CompositionService.SetSlots", in)
 	out := new(ReplyCompositionSlots)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -158,7 +158,7 @@ type CompositionServiceHandler interface {
 	GetListBy(context.Context, *RequestFilter, *ReplyCompositionList) error
 	GetStatistic(context.Context, *RequestFilter, *ReplyStatistic) error
 	UpdateBy(context.Context, *RequestUpdate, *ReplyInfo) error
-	SetSlot(context.Context, *ReqCompositionSlots, *ReplyCompositionSlots) error
+	SetSlots(context.Context, *ReqCompositionSlots, *ReplyCompositionSlots) error
 }
 
 func RegisterCompositionServiceHandler(s server.Server, hdlr CompositionServiceHandler, opts ...server.HandlerOption) error {
@@ -171,7 +171,7 @@ func RegisterCompositionServiceHandler(s server.Server, hdlr CompositionServiceH
 		GetListBy(ctx context.Context, in *RequestFilter, out *ReplyCompositionList) error
 		GetStatistic(ctx context.Context, in *RequestFilter, out *ReplyStatistic) error
 		UpdateBy(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error
-		SetSlot(ctx context.Context, in *ReqCompositionSlots, out *ReplyCompositionSlots) error
+		SetSlots(ctx context.Context, in *ReqCompositionSlots, out *ReplyCompositionSlots) error
 	}
 	type CompositionService struct {
 		compositionService
@@ -216,6 +216,6 @@ func (h *compositionServiceHandler) UpdateBy(ctx context.Context, in *RequestUpd
 	return h.CompositionServiceHandler.UpdateBy(ctx, in, out)
 }
 
-func (h *compositionServiceHandler) SetSlot(ctx context.Context, in *ReqCompositionSlots, out *ReplyCompositionSlots) error {
-	return h.CompositionServiceHandler.SetSlot(ctx, in, out)
+func (h *compositionServiceHandler) SetSlots(ctx context.Context, in *ReqCompositionSlots, out *ReplyCompositionSlots) error {
+	return h.CompositionServiceHandler.SetSlots(ctx, in, out)
 }
