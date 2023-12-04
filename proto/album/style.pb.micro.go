@@ -42,8 +42,6 @@ type StyleService interface {
 	GetListByFilter(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStyleList, error)
 	GetStatistic(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStatistic, error)
 	UpdateByFilter(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
-	AppendSlot(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error)
-	SubtractSlot(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error)
 }
 
 type styleService struct {
@@ -138,26 +136,6 @@ func (c *styleService) UpdateByFilter(ctx context.Context, in *RequestUpdate, op
 	return out, nil
 }
 
-func (c *styleService) AppendSlot(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error) {
-	req := c.c.NewRequest(c.name, "StyleService.AppendSlot", in)
-	out := new(ReplyList)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *styleService) SubtractSlot(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error) {
-	req := c.c.NewRequest(c.name, "StyleService.SubtractSlot", in)
-	out := new(ReplyList)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for StyleService service
 
 type StyleServiceHandler interface {
@@ -169,8 +147,6 @@ type StyleServiceHandler interface {
 	GetListByFilter(context.Context, *RequestFilter, *ReplyStyleList) error
 	GetStatistic(context.Context, *RequestFilter, *ReplyStatistic) error
 	UpdateByFilter(context.Context, *RequestUpdate, *ReplyInfo) error
-	AppendSlot(context.Context, *RequestList, *ReplyList) error
-	SubtractSlot(context.Context, *RequestList, *ReplyList) error
 }
 
 func RegisterStyleServiceHandler(s server.Server, hdlr StyleServiceHandler, opts ...server.HandlerOption) error {
@@ -183,8 +159,6 @@ func RegisterStyleServiceHandler(s server.Server, hdlr StyleServiceHandler, opts
 		GetListByFilter(ctx context.Context, in *RequestFilter, out *ReplyStyleList) error
 		GetStatistic(ctx context.Context, in *RequestFilter, out *ReplyStatistic) error
 		UpdateByFilter(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error
-		AppendSlot(ctx context.Context, in *RequestList, out *ReplyList) error
-		SubtractSlot(ctx context.Context, in *RequestList, out *ReplyList) error
 	}
 	type StyleService struct {
 		styleService
@@ -227,12 +201,4 @@ func (h *styleServiceHandler) GetStatistic(ctx context.Context, in *RequestFilte
 
 func (h *styleServiceHandler) UpdateByFilter(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error {
 	return h.StyleServiceHandler.UpdateByFilter(ctx, in, out)
-}
-
-func (h *styleServiceHandler) AppendSlot(ctx context.Context, in *RequestList, out *ReplyList) error {
-	return h.StyleServiceHandler.AppendSlot(ctx, in, out)
-}
-
-func (h *styleServiceHandler) SubtractSlot(ctx context.Context, in *RequestList, out *ReplyList) error {
-	return h.StyleServiceHandler.SubtractSlot(ctx, in, out)
 }

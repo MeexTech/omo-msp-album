@@ -13,8 +13,6 @@ service StyleService {
   rpc GetListByFilter(RequestFilter) returns (ReplyStyleList) {}
   rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
   rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
-  rpc AppendSlot(RequestList) returns (ReplyList) {}
-  rpc SubtractSlot(RequestList) returns (ReplyList) {}
 }
 
 message StyleInfo {
@@ -57,6 +55,7 @@ message ReqStyleUpdate{
   string remark = 3;
   uint32 type = 4;
   string operator = 5;
+  repeated StyleSlot slots = 11;
 }
 
 message ReplyStyleInfo{
