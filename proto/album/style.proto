@@ -46,7 +46,11 @@ message ReqStyleAdd {
   string remark = 2;
   string operator = 3;
   uint32 type = 4;
-  string owner = 5;
+  string background = 5;
+  string cover = 6;
+  repeated string tags = 7;
+  repeated string scenes = 8;
+  repeated StyleSlot slots = 21;
 }
 
 message ReqStyleUpdate{
@@ -55,7 +59,10 @@ message ReqStyleUpdate{
   string remark = 3;
   uint32 type = 4;
   string operator = 5;
-  repeated StyleSlot slots = 11;
+  string background = 6;
+  repeated string tags = 7;
+  repeated string scenes = 8;
+  repeated StyleSlot slots = 21;
 }
 
 message ReplyStyleInfo{
