@@ -6,7 +6,7 @@ import "proto/album/common.proto";
 
 service CertificateService {
   rpc AddOne(ReqCertificateAdd) returns (ReplyCertificateInfo) {}
-  rpc UpdateBase(ReqCertificateAdd) returns (ReplyInfo) {}
+  rpc UpdateBase(ReqCertificateUpdate) returns (ReplyInfo) {}
   rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
   rpc GetOne(RequestInfo) returns (ReplyCertificateInfo) {}
   rpc Search(RequestInfo) returns (ReplyCertificateList) {}
@@ -14,8 +14,6 @@ service CertificateService {
   rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
   rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
   rpc UpdateStatus(RequestIntFlag) returns (ReplyInfo) {}
-  rpc AppendAsset(RequestList) returns (ReplyList) {}
-  rpc SubtractAsset(RequestList) returns (ReplyList) {}
 }
 
 message CertificateInfo {
@@ -41,20 +39,23 @@ message CertificateInfo {
 message ReqCertificateAdd {
   string name = 1;
   string remark = 2;
-  string location = 3;
+  string sn = 3;
   string operator = 4;
   uint32 type = 5;
-  uint32 style = 6;
-  repeated string targets = 7;
+  string style = 6;
+  uint32 status = 7;
+  string target = 8;
+  string scene = 9;
+  string image = 10;
+  repeated string tags = 20;
 }
 
 message ReqCertificateUpdate{
   string uid = 1;
   string name = 2;
   string remark = 3;
-  string cover = 4;
-  string operator = 5;
-  string passwords = 6;
+  string operator = 4;
+  repeated string tags = 20;
 }
 
 message ReplyCertificateInfo{

@@ -35,7 +35,7 @@ var _ server.Option
 
 type CertificateService interface {
 	AddOne(ctx context.Context, in *ReqCertificateAdd, opts ...client.CallOption) (*ReplyCertificateInfo, error)
-	UpdateBase(ctx context.Context, in *ReqCertificateAdd, opts ...client.CallOption) (*ReplyInfo, error)
+	UpdateBase(ctx context.Context, in *ReqCertificateUpdate, opts ...client.CallOption) (*ReplyInfo, error)
 	RemoveOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyInfo, error)
 	GetOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyCertificateInfo, error)
 	Search(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyCertificateList, error)
@@ -43,8 +43,6 @@ type CertificateService interface {
 	GetStatistic(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStatistic, error)
 	UpdateByFilter(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
 	UpdateStatus(ctx context.Context, in *RequestIntFlag, opts ...client.CallOption) (*ReplyInfo, error)
-	AppendAsset(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error)
-	SubtractAsset(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error)
 }
 
 type certificateService struct {
@@ -69,7 +67,7 @@ func (c *certificateService) AddOne(ctx context.Context, in *ReqCertificateAdd, 
 	return out, nil
 }
 
-func (c *certificateService) UpdateBase(ctx context.Context, in *ReqCertificateAdd, opts ...client.CallOption) (*ReplyInfo, error) {
+func (c *certificateService) UpdateBase(ctx context.Context, in *ReqCertificateUpdate, opts ...client.CallOption) (*ReplyInfo, error) {
 	req := c.c.NewRequest(c.name, "CertificateService.UpdateBase", in)
 	out := new(ReplyInfo)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -149,31 +147,11 @@ func (c *certificateService) UpdateStatus(ctx context.Context, in *RequestIntFla
 	return out, nil
 }
 
-func (c *certificateService) AppendAsset(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error) {
-	req := c.c.NewRequest(c.name, "CertificateService.AppendAsset", in)
-	out := new(ReplyList)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *certificateService) SubtractAsset(ctx context.Context, in *RequestList, opts ...client.CallOption) (*ReplyList, error) {
-	req := c.c.NewRequest(c.name, "CertificateService.SubtractAsset", in)
-	out := new(ReplyList)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for CertificateService service
 
 type CertificateServiceHandler interface {
 	AddOne(context.Context, *ReqCertificateAdd, *ReplyCertificateInfo) error
-	UpdateBase(context.Context, *ReqCertificateAdd, *ReplyInfo) error
+	UpdateBase(context.Context, *ReqCertificateUpdate, *ReplyInfo) error
 	RemoveOne(context.Context, *RequestInfo, *ReplyInfo) error
 	GetOne(context.Context, *RequestInfo, *ReplyCertificateInfo) error
 	Search(context.Context, *RequestInfo, *ReplyCertificateList) error
@@ -181,14 +159,12 @@ type CertificateServiceHandler interface {
 	GetStatistic(context.Context, *RequestFilter, *ReplyStatistic) error
 	UpdateByFilter(context.Context, *RequestUpdate, *ReplyInfo) error
 	UpdateStatus(context.Context, *RequestIntFlag, *ReplyInfo) error
-	AppendAsset(context.Context, *RequestList, *ReplyList) error
-	SubtractAsset(context.Context, *RequestList, *ReplyList) error
 }
 
 func RegisterCertificateServiceHandler(s server.Server, hdlr CertificateServiceHandler, opts ...server.HandlerOption) error {
 	type certificateService interface {
 		AddOne(ctx context.Context, in *ReqCertificateAdd, out *ReplyCertificateInfo) error
-		UpdateBase(ctx context.Context, in *ReqCertificateAdd, out *ReplyInfo) error
+		UpdateBase(ctx context.Context, in *ReqCertificateUpdate, out *ReplyInfo) error
 		RemoveOne(ctx context.Context, in *RequestInfo, out *ReplyInfo) error
 		GetOne(ctx context.Context, in *RequestInfo, out *ReplyCertificateInfo) error
 		Search(ctx context.Context, in *RequestInfo, out *ReplyCertificateList) error
@@ -196,8 +172,6 @@ func RegisterCertificateServiceHandler(s server.Server, hdlr CertificateServiceH
 		GetStatistic(ctx context.Context, in *RequestFilter, out *ReplyStatistic) error
 		UpdateByFilter(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error
 		UpdateStatus(ctx context.Context, in *RequestIntFlag, out *ReplyInfo) error
-		AppendAsset(ctx context.Context, in *RequestList, out *ReplyList) error
-		SubtractAsset(ctx context.Context, in *RequestList, out *ReplyList) error
 	}
 	type CertificateService struct {
 		certificateService
@@ -214,7 +188,7 @@ func (h *certificateServiceHandler) AddOne(ctx context.Context, in *ReqCertifica
 	return h.CertificateServiceHandler.AddOne(ctx, in, out)
 }
 
-func (h *certificateServiceHandler) UpdateBase(ctx context.Context, in *ReqCertificateAdd, out *ReplyInfo) error {
+func (h *certificateServiceHandler) UpdateBase(ctx context.Context, in *ReqCertificateUpdate, out *ReplyInfo) error {
 	return h.CertificateServiceHandler.UpdateBase(ctx, in, out)
 }
 
@@ -244,12 +218,4 @@ func (h *certificateServiceHandler) UpdateByFilter(ctx context.Context, in *Requ
 
 func (h *certificateServiceHandler) UpdateStatus(ctx context.Context, in *RequestIntFlag, out *ReplyInfo) error {
 	return h.CertificateServiceHandler.UpdateStatus(ctx, in, out)
-}
-
-func (h *certificateServiceHandler) AppendAsset(ctx context.Context, in *RequestList, out *ReplyList) error {
-	return h.CertificateServiceHandler.AppendAsset(ctx, in, out)
-}
-
-func (h *certificateServiceHandler) SubtractAsset(ctx context.Context, in *RequestList, out *ReplyList) error {
-	return h.CertificateServiceHandler.SubtractAsset(ctx, in, out)
 }
