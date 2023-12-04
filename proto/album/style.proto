@@ -29,10 +29,18 @@ message StyleInfo {
   string remark = 8;
   uint32 type = 9;
   string cover = 10;
-  uint32 size = 11;
-  uint32 price = 12;
-  repeated string tags = 13;
-  repeated PhotocopySlot slots = 14;
+  string background = 11;
+  repeated string tags = 21;
+  repeated string scenes = 22;
+  repeated StyleSlot slots = 31;
+}
+
+message StyleSlot {
+   string key = 1;
+   int32 x = 2;
+   int32 y = 3;
+   uint32 width = 4;
+   uint32 height = 5;
 }
 
 message ReqStyleAdd {
