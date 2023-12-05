@@ -28,6 +28,7 @@ message StyleInfo {
   uint32 type = 9;
   string cover = 10;
   string background = 11;
+  string prefix = 12;
   repeated string tags = 21;
   repeated string scenes = 22;
   repeated StyleSlot slots = 31;
