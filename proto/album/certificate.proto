@@ -65,5 +65,7 @@ message ReplyCertificateInfo{
 
 message ReplyCertificateList{
   ReplyStatus status = 1;
-  repeated CertificateInfo list = 2;
+  uint32 total = 2;
+  uint32 pages = 3;
+  repeated CertificateInfo list = 11;
 }

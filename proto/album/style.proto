@@ -49,8 +49,9 @@ message ReqStyleAdd {
   uint32 type = 4;
   string background = 5;
   string cover = 6;
-  repeated string tags = 7;
-  repeated string scenes = 8;
+  string prefix = 7;
+  repeated string tags = 15;
+  repeated string scenes = 16;
   repeated StyleSlot slots = 21;
 }
 
@@ -61,8 +62,8 @@ message ReqStyleUpdate{
   uint32 type = 4;
   string operator = 5;
   string background = 6;
-  repeated string tags = 7;
-  repeated string scenes = 8;
+  repeated string tags = 15;
+  repeated string scenes = 16;
   repeated StyleSlot slots = 21;
 }
 
@@ -73,5 +74,7 @@ message ReplyStyleInfo{
 
 message ReplyStyleList{
   ReplyStatus status = 1;
-  repeated StyleInfo list = 2;
+  uint32 total = 2;
+  uint32 pages = 3;
+  repeated StyleInfo list = 11;
 }
