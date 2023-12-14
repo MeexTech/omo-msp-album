@@ -34,6 +34,7 @@ message CertificateInfo {
   string target = 14; //证书颁发的对象
   string scene = 15; //证书颁发机构
   repeated string tags = 20;
+  repeated string assets = 21;
 }
 
 message ReqCertificateAdd {
@@ -48,6 +49,7 @@ message ReqCertificateAdd {
   string scene = 9;
   string image = 10;
   repeated string tags = 20;
+  repeated string assets = 21;
 }
 
 message ReqCertificateUpdate{
