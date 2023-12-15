@@ -33,6 +33,7 @@ message CertificateInfo {
   string style = 13; //证书样式
   string target = 14; //证书颁发的对象
   string scene = 15; //证书颁发机构
+  ContactInfo contact = 16;
   repeated string tags = 20;
   repeated string assets = 21;
 }
@@ -48,6 +49,7 @@ message ReqCertificateAdd {
   string target = 8;
   string scene = 9;
   string image = 10;
+  ContactInfo contact = 15;
   repeated string tags = 20;
   repeated string assets = 21;
 }

@@ -8,6 +8,13 @@ message PairInt{
   string value = 2;
 }
 
+message ContactInfo {
+  string name = 1;
+  string phone = 2;
+  string address = 3;
+  string remark = 4;
+}
+
 message RequestInfo {
   string uid = 1;
   string flag = 2;
