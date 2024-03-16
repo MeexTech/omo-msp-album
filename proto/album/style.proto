@@ -34,6 +34,7 @@ message StyleInfo {
   repeated string tags = 21;
   repeated string scenes = 22;
   repeated StyleSlot slots = 31;
+  repeated StyleRelate relates = 32;
 }
 
 message StyleSlot {
@@ -44,6 +45,11 @@ message StyleSlot {
    uint32 height = 5;
    uint32 bold = 6;
    uint32 size = 7;
+}
+
+message StyleRelate{
+  string entity = 1;
+  uint32 way = 2;
 }
 
 message ReqStyleAdd {
