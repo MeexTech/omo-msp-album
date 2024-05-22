@@ -36,6 +36,7 @@ message CollectiveInfo {
   uint32 status = 14;
   uint32 permission = 15;
   uint32 type = 16;
+  DurationInfo duration = 17;
   repeated string assets = 21;
   repeated string tags = 22;
 }
@@ -46,6 +47,7 @@ message ReqCollectiveAdd {
   string operator = 3;
   string owner = 4;
   uint32 type = 5;
+  DurationInfo duration = 11;
 }
 
 message ReqCollectiveUpdate{

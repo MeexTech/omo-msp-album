@@ -15,6 +15,11 @@ message ContactInfo {
   string remark = 4;
 }
 
+message DurationInfo{
+  int64 begin = 1;
+  int64 end = 2;
+}
+
 message RequestInfo {
   string uid = 1;
   string flag = 2;
