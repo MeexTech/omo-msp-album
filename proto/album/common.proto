@@ -50,6 +50,7 @@ message RequestUpdate{
   string value = 4;
   string operator = 5;
   repeated string values = 6;
+  repeated MediaInfo list = 7;
 }
 
 message ReplyStatus {
