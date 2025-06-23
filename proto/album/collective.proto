@@ -39,6 +39,7 @@ message CollectiveInfo {
   DurationInfo duration = 17;
   repeated string assets = 21;
   repeated string tags = 22;
+  repeated MediaInfo medias = 31;
 }
 
 message ReqCollectiveAdd {

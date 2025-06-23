@@ -8,6 +8,11 @@ message PairInt{
   string value = 2;
 }
 
+message MediaInfo{
+  string cover = 1;
+  string asset = 2;
+}
+
 message ContactInfo {
   string name = 1;
   string phone = 2;
@@ -76,12 +81,14 @@ message RequestList{
   string uid = 1;
   string operator = 2;
   repeated string list = 3;
+  repeated MediaInfo medias = 4;
 }
 
 message ReplyList {
   string uid = 1;
   repeated string list = 2;
   ReplyStatus status = 3;
+  repeated MediaInfo medias = 5;
 }
 
 message ReplyStatistic {
