@@ -4,14 +4,41 @@ package omo.msp.album;
 option go_package= "proto/album";
 import "proto/album/common.proto";
 
+/**
+ * 证书样式服务
+ */
 service StyleService {
+  /**
+   * 添加证书样式
+   */
   rpc AddOne(ReqStyleAdd) returns (ReplyStyleInfo) {}
+  /**
+   * 更新证书样式
+   */
   rpc UpdateBase(ReqStyleUpdate) returns (ReplyInfo) {}
+  /**
+   * 删除证书样式
+   */
   rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  /**
+   * 获取证书样式
+   */
   rpc GetOne(RequestInfo) returns (ReplyStyleInfo) {}
+  /**
+   * 搜索证书样式
+   */
   rpc Search(RequestInfo) returns (ReplyStyleList) {}
+  /**
+   * 获取证书样式列表
+   */
   rpc GetListByFilter(RequestFilter) returns (ReplyStyleList) {}
+  /**
+   * 获取证书样式统计信息
+   */
   rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  /**
+   * 更新证书样式
+   */
   rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
 }
 
@@ -31,6 +58,7 @@ message StyleInfo {
   string prefix = 12;
   uint32 width = 13;
   uint32 height = 14;
+  string owner = 15;
   repeated string tags = 21;
   repeated string scenes = 22;
   repeated StyleSlot slots = 31;
@@ -62,6 +90,7 @@ message ReqStyleAdd {
   string prefix = 7;
   uint32 width = 8;
   uint32 height = 9;
+  string owner = 10;
   repeated string tags = 15;
   repeated string scenes = 16;
   repeated StyleSlot slots = 21;

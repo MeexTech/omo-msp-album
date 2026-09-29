@@ -34,13 +34,29 @@ var _ server.Option
 // Client API for StyleService service
 
 type StyleService interface {
+	//*
+	// 添加证书样式
 	AddOne(ctx context.Context, in *ReqStyleAdd, opts ...client.CallOption) (*ReplyStyleInfo, error)
+	//*
+	// 更新证书样式
 	UpdateBase(ctx context.Context, in *ReqStyleUpdate, opts ...client.CallOption) (*ReplyInfo, error)
+	//*
+	// 删除证书样式
 	RemoveOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyInfo, error)
+	//*
+	// 获取证书样式
 	GetOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyStyleInfo, error)
+	//*
+	// 搜索证书样式
 	Search(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyStyleList, error)
+	//*
+	// 获取证书样式列表
 	GetListByFilter(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStyleList, error)
+	//*
+	// 获取证书样式统计信息
 	GetStatistic(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStatistic, error)
+	//*
+	// 更新证书样式
 	UpdateByFilter(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
 }
 
@@ -139,13 +155,29 @@ func (c *styleService) UpdateByFilter(ctx context.Context, in *RequestUpdate, op
 // Server API for StyleService service
 
 type StyleServiceHandler interface {
+	//*
+	// 添加证书样式
 	AddOne(context.Context, *ReqStyleAdd, *ReplyStyleInfo) error
+	//*
+	// 更新证书样式
 	UpdateBase(context.Context, *ReqStyleUpdate, *ReplyInfo) error
+	//*
+	// 删除证书样式
 	RemoveOne(context.Context, *RequestInfo, *ReplyInfo) error
+	//*
+	// 获取证书样式
 	GetOne(context.Context, *RequestInfo, *ReplyStyleInfo) error
+	//*
+	// 搜索证书样式
 	Search(context.Context, *RequestInfo, *ReplyStyleList) error
+	//*
+	// 获取证书样式列表
 	GetListByFilter(context.Context, *RequestFilter, *ReplyStyleList) error
+	//*
+	// 获取证书样式统计信息
 	GetStatistic(context.Context, *RequestFilter, *ReplyStatistic) error
+	//*
+	// 更新证书样式
 	UpdateByFilter(context.Context, *RequestUpdate, *ReplyInfo) error
 }
 
