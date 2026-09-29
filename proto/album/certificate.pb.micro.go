@@ -34,14 +34,32 @@ var _ server.Option
 // Client API for CertificateService service
 
 type CertificateService interface {
+	//*
+	// 添加证书
 	AddOne(ctx context.Context, in *ReqCertificateAdd, opts ...client.CallOption) (*ReplyCertificateInfo, error)
+	//*
+	// 更新证书
 	UpdateBase(ctx context.Context, in *ReqCertificateUpdate, opts ...client.CallOption) (*ReplyInfo, error)
+	//*
+	// 删除证书
 	RemoveOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyInfo, error)
+	//*
+	// 获取证书
 	GetOne(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyCertificateInfo, error)
+	//*
+	// 搜索证书
 	Search(ctx context.Context, in *RequestInfo, opts ...client.CallOption) (*ReplyCertificateList, error)
+	//*
+	// 获取证书列表
 	GetListByFilter(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyCertificateList, error)
+	//*
+	// 获取证书统计信息
 	GetStatistic(ctx context.Context, in *RequestFilter, opts ...client.CallOption) (*ReplyStatistic, error)
+	//*
+	// 更新证书
 	UpdateByFilter(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
+	//*
+	// 更新证书状态
 	UpdateStatus(ctx context.Context, in *RequestIntFlag, opts ...client.CallOption) (*ReplyInfo, error)
 }
 
@@ -150,14 +168,32 @@ func (c *certificateService) UpdateStatus(ctx context.Context, in *RequestIntFla
 // Server API for CertificateService service
 
 type CertificateServiceHandler interface {
+	//*
+	// 添加证书
 	AddOne(context.Context, *ReqCertificateAdd, *ReplyCertificateInfo) error
+	//*
+	// 更新证书
 	UpdateBase(context.Context, *ReqCertificateUpdate, *ReplyInfo) error
+	//*
+	// 删除证书
 	RemoveOne(context.Context, *RequestInfo, *ReplyInfo) error
+	//*
+	// 获取证书
 	GetOne(context.Context, *RequestInfo, *ReplyCertificateInfo) error
+	//*
+	// 搜索证书
 	Search(context.Context, *RequestInfo, *ReplyCertificateList) error
+	//*
+	// 获取证书列表
 	GetListByFilter(context.Context, *RequestFilter, *ReplyCertificateList) error
+	//*
+	// 获取证书统计信息
 	GetStatistic(context.Context, *RequestFilter, *ReplyStatistic) error
+	//*
+	// 更新证书
 	UpdateByFilter(context.Context, *RequestUpdate, *ReplyInfo) error
+	//*
+	// 更新证书状态
 	UpdateStatus(context.Context, *RequestIntFlag, *ReplyInfo) error
 }
 

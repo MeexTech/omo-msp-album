@@ -4,15 +4,45 @@ package omo.msp.album;
 option go_package= "proto/album";
 import "proto/album/common.proto";
 
+/**
+ * 证书服务
+ */
 service CertificateService {
+  /**
+   * 添加证书
+   */
   rpc AddOne(ReqCertificateAdd) returns (ReplyCertificateInfo) {}
+  /**
+   * 更新证书
+   */
   rpc UpdateBase(ReqCertificateUpdate) returns (ReplyInfo) {}
+  /**
+   * 删除证书
+   */
   rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  /**
+   * 获取证书
+   */
   rpc GetOne(RequestInfo) returns (ReplyCertificateInfo) {}
+  /**
+   * 搜索证书
+   */
   rpc Search(RequestInfo) returns (ReplyCertificateList) {}
+  /**
+   * 获取证书列表
+   */
   rpc GetListByFilter(RequestFilter) returns (ReplyCertificateList) {}
+  /**
+   * 获取证书统计信息
+   */
   rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  /**
+   * 更新证书
+   */
   rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+  /**
+   * 更新证书状态
+   */
   rpc UpdateStatus(RequestIntFlag) returns (ReplyInfo) {}
 }
 
